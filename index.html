@@ -2,124 +2,432 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhajan Marg - Playlist Video Portal</title>
-  <!-- Tailwind CSS CDN for styling -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome Icons CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Fixed viewport: prevents zooming and fits exactly to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gagan Nishad | Web Developer</title>
+
   <style>
-    /* Custom dark-mode scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
+    /* Reset & Prevent Copying / Selection */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
     }
-    ::-webkit-scrollbar-track {
-      background: #0f0f0f;
+
+    :root {
+      --bg-black: #000000;
+      --border-dark: #222222;
+      --text-light: #f5f5f5;
+      --text-gray: #a1a1aa;
+      --pure-yellow: #FFD700;
+      --yellow-hover: #ffea00;
+      --font-stack: "Aptos", -apple-system, BlinkMacSystemFont, "Times New Roman", Times, serif;
     }
-    ::-webkit-scrollbar-thumb {
-      background: #272727;
-      border-radius: 4px;
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-black);
+      color: var(--text-light);
+      font-family: var(--font-stack);
+      line-height: 1.5;
+      touch-action: pan-y;
+      overflow-x: hidden;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3f3f3f;
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.95);
+      border-bottom: 1px solid var(--border-dark);
+      z-index: 1000;
+      width: 100%;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .brand-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--pure-yellow);
+      letter-spacing: 0.5px;
+    }
+
+    .hamburger-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      border-radius: 50%;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: var(--pure-yellow);
+      border-radius: 10px;
+    }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 1.5rem;
+      background-color: #0c0c0c;
+      border: 1px solid var(--pure-yellow);
+      padding: 1rem 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .nav-menu.active {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .nav-menu a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+      color: var(--pure-yellow);
+    }
+
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 3.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 span {
+      color: var(--pure-yellow);
+    }
+
+    .hero p {
+      color: var(--text-gray);
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Big Rounded Action Buttons */
+    .cta-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .btn-power {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 1.25rem 2.5rem;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--pure-yellow);
+      color: #000000;
+      border: 2px solid var(--pure-yellow);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--yellow-hover);
+      border-color: var(--yellow-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--pure-yellow);
+      border: 2px solid var(--pure-yellow);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 215, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Projects Section - No Boxes */
+    .projects {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--pure-yellow);
+      display: inline-block;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 45px;
+      height: 4px;
+      background-color: var(--pure-yellow);
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .project-item {
+      background: transparent;
+      border: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 3rem;
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .project-item h3 {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .project-item p {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      color: #000000;
+      background-color: var(--pure-yellow);
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+    }
+
+    .project-link:hover {
+      background-color: #ffffff;
+      transform: translateX(4px);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-dark);
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--text-gray);
+      font-size: 1.05rem;
+    }
+
+    footer .creator {
+      color: var(--pure-yellow);
+      font-weight: 800;
+    }
+
+    /* Mobile Screen Optimization */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 3.5rem 1rem 2.5rem;
+      }
+
+      .cta-container {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+      }
+
+      .btn-power {
+        width: 100%;
+        padding: 1.25rem 1rem;
+        font-size: 1.1rem;
+      }
+
+      .projects {
+        padding: 2rem 1.25rem 4rem;
+      }
+
+      .project-item {
+        padding-bottom: 2.5rem;
+      }
+
+      .project-item h3 {
+        font-size: 1.5rem;
+      }
+
+      .project-link {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+      }
     }
   </style>
 </head>
-<body class="bg-[#0f0f0f] text-white flex flex-col min-h-screen font-sans antialiased">
+<body oncontextmenu="return false;">
 
-  <!-- Header / Navigation Bar -->
-  <header class="flex items-center justify-between px-4 sm:px-8 py-3.5 bg-[#0f0f0f] border-b border-zinc-800 sticky top-0 z-50">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center text-xl shadow-lg shadow-orange-600/20">
-        🕉️
-      </div>
-      <div>
-        <h1 class="text-lg font-bold tracking-tight leading-none">Bhajan Marg</h1>
-        <span class="text-xs text-zinc-400">Official Discourse & Satsang Portal</span>
-      </div>
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand-name">Gagan nishad</div>
+
+      <button class="hamburger-btn" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="https://wa.me/918924973738?text=Hi%20Gagan,%20I%20want%20to%20get%20a%20website%20built." target="_blank">Connect on WhatsApp</a>
+        <a href="mailto:thegagannishad@gmail.com">Send an Email</a>
+      </nav>
     </div>
-
-    <!-- YouTube Channel Link Button -->
-    <a
-      href="https://www.youtube.com/@BhajanMarg?sub_confirmation=1"
-      target="_blank"
-      rel="noreferrer"
-      class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-full flex items-center gap-2 transition"
-    >
-      <i class="fa-brands fa-youtube text-base"></i>
-      <span>Subscribe</span>
-    </a>
   </header>
 
-  <!-- Main Content Layout -->
-  <main class="flex-1 max-w-5xl mx-auto w-full p-4 sm:p-6 flex flex-col gap-6">
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Professional Web <span>Architecture</span></h1>
+    <p>Custom-built websites developed with precision, fast loading speeds, and high-converting modern layouts.</p>
     
-    <!-- Player Container with your custom embed code -->
-    <section class="w-full bg-[#181818] border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl p-2 sm:p-3">
-      <!-- Embedded Player Code -->
-      <div style="padding-bottom: 56.25%; max-width: 100%; position: relative;">
-        <iframe 
-          src="https://www.youtube.com/embed?listType=playlist&list=PLOYeOpISxx5c&si=NGgIoaWhfGkF-oQu&modestbranding=1&rel=0&iv_load_policy=3" 
-          width="800" 
-          height="450" 
-          style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border-radius: 12px;" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen>
-        </iframe>
-      </div>
-      <!-- Embed Source Attribution -->
-      <!-- Youtube Embed Code Generated by https://www.onetools.me/ -->
-    </section>
+    <div class="cta-container">
+      <a href="https://wa.me/918924973738?text=Hi%20Gagan,%20I%20want%20to%20get%20a%20website%20built." target="_blank" class="btn-power btn-primary">
+        Connect on WhatsApp
+      </a>
+      <a href="mailto:thegagannishad@gmail.com" class="btn-power btn-secondary">
+        Send Email
+      </a>
+    </div>
+  </section>
 
-    <!-- Video & Playlist Information Section -->
-    <section class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 sm:p-6">
-      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-4">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight">Bhajan Marg Official Playlist</h2>
-          <p class="text-xs sm:text-sm text-zinc-400 mt-1">
-            Continuous playback of spiritual discourses, Q&amp;A sessions, and bhajans.
-          </p>
-        </div>
+  <!-- Projects Showcase (No Boxes) -->
+  <section class="projects">
+    <div class="section-title">Selected Works</div>
 
-        <!-- Action Buttons -->
-        <div class="flex items-center gap-2.5">
-          <button onclick="copyCurrentLink()" class="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition">
-            <i class="fa-solid fa-share-nodes"></i>
-            <span>Share Playlist</span>
-          </button>
-          <a 
-            href="https://www.youtube.com/@BhajanMarg" 
-            target="_blank" 
-            rel="noreferrer" 
-            class="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition"
-          >
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            <span>Visit Channel</span>
-          </a>
-        </div>
-      </div>
+    <div class="project-list">
+      <!-- Project 1 -->
+      <article class="project-item">
+        <h3>CS Prerana Anchalia</h3>
+        <p>A dedicated advisory portal tailored for secretarial compliance, company legal setups, corporate audits, and executive legal consultancy.</p>
+        <a href="https://cspreranaanchalia.in" target="_blank" rel="noopener noreferrer" class="project-link">
+          Open Website &rarr;
+        </a>
+      </article>
 
-      <!-- Quick Guidance Notes -->
-      <div class="mt-4 text-xs sm:text-sm text-zinc-400 space-y-2 leading-relaxed">
-        <p>• Click the <strong>playlist icon (top right corner of the player)</strong> to view and jump between all videos queued in this series.</p>
-        <p>• Videos will play sequentially without external recommendations.</p>
-      </div>
-    </section>
+      <!-- Project 2 -->
+      <article class="project-item">
+        <h3>Inspiro Stone Ventures</h3>
+        <p>An enterprise showcase highlighting natural stone collections, customized architectural slabs, and high-durability surfaces for luxury and commercial properties.</p>
+        <a href="https://inspirostoneventures.in/" target="_blank" rel="noopener noreferrer" class="project-link">
+          Open Website &rarr;
+        </a>
+      </article>
 
-  </main>
+      <!-- Project 3 -->
+      <article class="project-item">
+        <h3>Jasmeet Kaur Portfolio</h3>
+        <p>A personal portfolio platform displaying creative career achievements, interactive project showcases, and professional skillsets.</p>
+        <a href="https://itsjasmeetkaur.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">
+          Open Website &rarr;
+        </a>
+      </article>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="border-t border-zinc-800 py-4 text-center text-xs text-zinc-500 mt-auto">
-    <p>© Bhajan Marg Dedicated Portal. All rights belong to the official channel creators.</p>
+  <footer>
+    Created by <span class="creator">Gagan nishad</span>
   </footer>
 
-  <!-- Script for Copy/Share functionality -->
   <script>
-    function copyCurrentLink() {
-      navigator.clipboard.writeText(window.location.href);
-      alert("Page link copied to clipboard!");
-    }
+    // Navigation toggle
+    const toggleBtn = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    // Disable keyboard shortcuts for copy / view source / dev tools
+    document.addEventListener('keydown', (e) => {
+      if (
+        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'a')) ||
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+      }
+    });
   </script>
 </body>
 </html>
