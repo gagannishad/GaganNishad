@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <!-- Fixed viewport: prevents zooming and fits exactly to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Gagan Nishad | Web Developer</title>
+  <title>Gagan Nishad - Web Creator</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans (Clean, elegant, non-bulky font for Laptop/Tablet) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* Reset & Prevent Copying / Selection */
@@ -26,18 +31,72 @@
       --text-gray: #a1a1aa;
       --pure-yellow: #FFD700;
       --yellow-hover: #ffea00;
-      --font-stack: "Aptos", -apple-system, BlinkMacSystemFont, "Times New Roman", Times, serif;
+      --font-mobile: "Aptos", -apple-system, BlinkMacSystemFont, "Times New Roman", Times, serif;
+      --font-desktop: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
+    /* Mobile (Default): Keeps existing font */
     html, body {
       width: 100%;
       min-height: 100%;
       background-color: var(--bg-black);
       color: var(--text-light);
-      font-family: var(--font-stack);
-      line-height: 1.5;
+      font-family: var(--font-mobile);
+      line-height: 1.6;
       touch-action: pan-y;
       overflow-x: hidden;
+    }
+
+    /* Tablet and Laptop (min-width: 769px): Uses refined professional font with balanced weights */
+    @media (min-width: 769px) {
+      html, body {
+        font-family: var(--font-desktop);
+        letter-spacing: -0.01em;
+      }
+
+      .brand-name {
+        font-weight: 700 !important;
+        letter-spacing: -0.02em !important;
+      }
+
+      .hero h1 {
+        font-weight: 700 !important;
+        letter-spacing: -0.03em !important;
+      }
+
+      .hero p {
+        font-weight: 400 !important;
+      }
+
+      .btn-power {
+        font-weight: 600 !important;
+        letter-spacing: 0.2px !important;
+      }
+
+      .section-title {
+        font-weight: 700 !important;
+        letter-spacing: -0.02em !important;
+      }
+
+      .project-item h3 {
+        font-weight: 600 !important;
+      }
+
+      .project-item p {
+        font-weight: 400 !important;
+      }
+
+      .project-link {
+        font-weight: 600 !important;
+      }
+
+      .about-section h2 {
+        font-weight: 700 !important;
+      }
+
+      .about-text {
+        font-weight: 400 !important;
+      }
     }
 
     /* Header */
@@ -62,7 +121,7 @@
     }
 
     .brand-name {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: var(--pure-yellow);
       letter-spacing: 0.5px;
@@ -108,8 +167,8 @@
     .nav-menu a {
       color: var(--text-light);
       text-decoration: none;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 500;
       white-space: nowrap;
       transition: color 0.2s ease;
     }
@@ -128,8 +187,8 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 3.8rem);
-      line-height: 1.15;
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      line-height: 1.2;
       font-weight: 800;
       color: var(--text-light);
       margin-bottom: 1.25rem;
@@ -141,12 +200,12 @@
 
     .hero p {
       color: var(--text-gray);
-      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      font-size: clamp(1.05rem, 2.2vw, 1.2rem);
       max-width: 650px;
       margin: 0 auto 2.5rem;
     }
 
-    /* Big Rounded Action Buttons */
+    /* Action Buttons */
     .cta-container {
       display: flex;
       justify-content: center;
@@ -159,14 +218,15 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.15rem;
-      font-weight: 800;
+      font-size: 1rem;
+      font-weight: 700;
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      padding: 1.25rem 2.5rem;
+      padding: 0.85rem 2.2rem;
       cursor: pointer;
       border-radius: 50px;
+      box-shadow: none;
       transition: all 0.25s ease;
     }
 
@@ -174,7 +234,7 @@
       background-color: var(--pure-yellow);
       color: #000000;
       border: 2px solid var(--pure-yellow);
-      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
+      box-shadow: none;
     }
 
     .btn-primary:hover {
@@ -187,6 +247,7 @@
       background-color: transparent;
       color: var(--pure-yellow);
       border: 2px solid var(--pure-yellow);
+      box-shadow: none;
     }
 
     .btn-secondary:hover {
@@ -194,16 +255,16 @@
       transform: translateY(-2px);
     }
 
-    /* Projects Section - No Boxes */
+    /* Projects Section */
     .projects {
       width: 100%;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 3rem 1.5rem 6rem;
+      padding: 3rem 1.5rem 4rem;
     }
 
     .section-title {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 800;
       color: var(--pure-yellow);
       display: inline-block;
@@ -215,7 +276,7 @@
       content: "";
       display: block;
       width: 45px;
-      height: 4px;
+      height: 3px;
       background-color: var(--pure-yellow);
       border-radius: 10px;
       margin-top: 6px;
@@ -244,7 +305,7 @@
     }
 
     .project-item h3 {
-      font-size: 1.8rem;
+      font-size: 1.65rem;
       color: var(--text-light);
       margin-bottom: 0.75rem;
       font-weight: 700;
@@ -252,7 +313,7 @@
 
     .project-item p {
       color: var(--text-gray);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       line-height: 1.7;
       margin-bottom: 1.5rem;
       max-width: 800px;
@@ -263,12 +324,12 @@
       align-items: center;
       color: #000000;
       background-color: var(--pure-yellow);
-      font-weight: 800;
-      font-size: 0.95rem;
+      font-weight: 700;
+      font-size: 0.9rem;
       text-decoration: none;
-      padding: 0.85rem 2rem;
+      padding: 0.8rem 1.9rem;
       border-radius: 50px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       transition: all 0.2s ease;
     }
 
@@ -277,21 +338,69 @@
       transform: translateX(4px);
     }
 
+    /* Clean Center-Aligned About Section (No Boxes or Cards) */
+    .about-section {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+      text-align: center;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .about-header {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .about-header h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--pure-yellow);
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .about-header .divider {
+      display: block;
+      width: 45px;
+      height: 3px;
+      background-color: var(--pure-yellow);
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    .about-text {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+      line-height: 1.85;
+      max-width: 720px;
+      margin: 0 auto;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--border-dark);
       text-align: center;
       padding: 3rem 1.5rem;
       color: var(--text-gray);
-      font-size: 1.05rem;
+      font-size: 0.95rem;
     }
 
     footer .creator {
       color: var(--pure-yellow);
-      font-weight: 800;
+      font-weight: 700;
     }
 
-    /* Mobile Screen Optimization */
+    /* Mobile Screen Adjustments */
     @media (max-width: 768px) {
       .hero {
         padding: 3.5rem 1rem 2.5rem;
@@ -305,12 +414,21 @@
 
       .btn-power {
         width: 100%;
-        padding: 1.25rem 1rem;
-        font-size: 1.1rem;
+        padding: 0.85rem 1rem;
+        font-size: 1.05rem;
       }
 
       .projects {
-        padding: 2rem 1.25rem 4rem;
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      .about-section {
+        padding: 3.5rem 1.25rem 4.5rem;
+      }
+
+      .about-text {
+        font-size: 1.05rem;
+        line-height: 1.75;
       }
 
       .project-item {
@@ -318,7 +436,7 @@
       }
 
       .project-item h3 {
-        font-size: 1.5rem;
+        font-size: 1.45rem;
       }
 
       .project-link {
@@ -371,8 +489,8 @@
     <div class="project-list">
       <!-- Project 1 -->
       <article class="project-item">
-        <h3>CS Prerana Anchalia</h3>
-        <p>A dedicated advisory portal tailored for secretarial compliance, company legal setups, corporate audits, and executive legal consultancy.</p>
+        <h3>CS Prerana Anchalia & Associates</h3>
+        <p>A multi-page website for a corporate governance and IPO advisory firm, covering services like IPO advisory, listing support, SEBI and ROC compliances, with dedicated pages for the team, offices, and client enquiries.</p>
         <a href="https://cspreranaanchalia.in" target="_blank" rel="noopener noreferrer" class="project-link">
           Open Website &rarr;
         </a>
@@ -380,8 +498,8 @@
 
       <!-- Project 2 -->
       <article class="project-item">
-        <h3>Inspiro Stone Ventures</h3>
-        <p>An enterprise showcase highlighting natural stone collections, customized architectural slabs, and high-durability surfaces for luxury and commercial properties.</p>
+        <h3>Inspirostone Ventures Pvt. Ltd.</h3>
+        <p>A corporate website for an IPO advisory and capital markets firm, guiding SME and Mainboard companies through public listings on NSE and BSE, with sections for services, major clients, and a step-by-step IPO process roadmap.</p>
         <a href="https://inspirostoneventures.in/" target="_blank" rel="noopener noreferrer" class="project-link">
           Open Website &rarr;
         </a>
@@ -389,13 +507,24 @@
 
       <!-- Project 3 -->
       <article class="project-item">
-        <h3>Jasmeet Kaur Portfolio</h3>
-        <p>A personal portfolio platform displaying creative career achievements, interactive project showcases, and professional skillsets.</p>
+        <h3>Jasmeet Kaur Official Website</h3>
+        <p>A personal website for a student and content creator, built around self-improvement content, daily habits, and lessons learned while growing a YouTube channel, with pages for videos, quotes, and her story.</p>
         <a href="https://itsjasmeetkaur.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">
           Open Website &rarr;
         </a>
       </article>
     </div>
+  </section>
+
+  <!-- About Section (No Box / No Card / Clean Open Center Layout) -->
+  <section class="about-section">
+    <div class="about-header">
+      <h2>About</h2>
+      <span class="divider"></span>
+    </div>
+    <p class="about-text">
+      I'm a self-taught web developer who's still early in this journey. I build every website with hands-on coding rather than drag-and-drop builders, focusing on clean design and fast, reliable pages. I'm always learning and improving with each project I take on.
+    </p>
   </section>
 
   <!-- Footer -->
